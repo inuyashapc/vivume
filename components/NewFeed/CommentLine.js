@@ -6,13 +6,15 @@ const styles = StyleSheet.create({
     gap: 16,
   },
   logo: {
-    width: 40,
-    height: 40,
+    width: 24,
+    height: 24,
     borderRadius: 50,
+    marginTop: 4,
+    marginLeft: 4,
   },
   title: {
     fontSize: 14,
-    fontWeight: "bold",
+    fontWeight: "600",
   },
   secondTitle: {
     flexDirection: "row",
@@ -20,13 +22,13 @@ const styles = StyleSheet.create({
   },
   timing: {
     color: "gray",
-    fontSize: 12,
+    fontSize: 13,
   },
   comment: {
-    fontSize: 12,
+    fontSize: 14,
   },
   commentAction: {
-    fontSize: 12,
+    fontSize: 13,
     color: "#1b75d0",
   },
 });
@@ -60,7 +62,7 @@ export default function CommentLine() {
             <Text style={styles.commentAction}>Trả lời</Text>
           </View>
           <View style={styles.secondTitle}>
-            <Text style={{ fontSize: 12 }}> | </Text>
+            <Text style={{ fontSize: 13 }}> | </Text>
             <Text style={styles.timing}> 0 thích </Text>
             <Text style={styles.timing}>{formattedDate(new Date())}</Text>
           </View>

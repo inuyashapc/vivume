@@ -17,13 +17,13 @@ const styles = StyleSheet.create({
     gap: 16,
   },
   logo: {
-    width: 50,
-    height: 50,
+    width: 36,
+    height: 36,
     borderRadius: 50,
   },
   title: {
-    fontSize: 18,
-    fontWeight: "bold",
+    fontSize: 14,
+    fontWeight: "600",
   },
   secondTitle: {
     flexDirection: "row",
@@ -31,10 +31,10 @@ const styles = StyleSheet.create({
   },
   timing: {
     color: "gray",
-    fontSize: 14,
+    fontSize: 13.6,
   },
   thirdTitle: {
-    fontSize: 13,
+    fontSize: 15.5,
     fontWeight: "bold",
     marginVertical: 10,
   },
@@ -61,7 +61,7 @@ const data = [
 
 export default function Feed() {
   return (
-    <View style={{ marginBottom: 30 }}>
+    <View style={{ flex: 1, marginBottom: 30 }}>
       <View style={styles.container}>
         <View style={styles.navbar}>
           <Image
@@ -75,7 +75,7 @@ export default function Feed() {
             <View style={styles.secondTitle}>
               <Text style={styles.timing}>{FormatDate()}</Text>
               <Text style={styles.timing}> - </Text>
-              <Text style={{ color: "#1b75d0", fontSize: 14 }}>Hà Nội</Text>
+              <Text style={{ color: "#1b75d0", fontSize: 13.6 }}>Hà Nội</Text>
             </View>
           </SafeAreaView>
         </View>
