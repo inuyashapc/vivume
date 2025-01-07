@@ -6,6 +6,7 @@ import Searching from "./pages/SearchingPage/Searching";
 import Notification from "./pages/NotificationPage/Notification";
 import UploadFeed from "./pages/UploadFeedPage/UploadFeed";
 import User from "./pages/UserPage/User";
+import CarouselImage from "./components/Carousel/CarouselImage";
 export default function App() {
   const Tab = createBottomTabNavigator();
   return (
@@ -37,7 +38,7 @@ export default function App() {
         })}
       >
         <Tab.Screen name="Home" component={Home} />
-        <Tab.Screen name="UploadFeed" component={UploadFeed} />
+        <Tab.Screen name="UploadFeed" component={CarouselImage} />
         <Tab.Screen name="Search" component={Searching} />
         <Tab.Screen name="Notification" component={Notification} />
         <Tab.Screen name="User" component={User} />
