@@ -3,6 +3,7 @@ import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import Comment from "../NewFeed/Comment";
 import FormatDate from "../../utils/FormatDate";
 import CarouselImage from "../Carousel/CarouselImage";
+import Food from "../Suggestion/Food";
 
 const styles = StyleSheet.create({
   container: {
@@ -86,6 +87,7 @@ export default function Feed() {
         <CarouselImage />
         <Comment />
       </View>
+      <Food />
     </View>
   );
 }
