@@ -10,6 +10,7 @@ import {
 import React, { useRef, useState } from "react";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { RichEditor, RichToolbar } from "react-native-pell-rich-editor";
+import AddPhotoLibrary from "../../components/NewFeed/AddPhotoLibrary";
 export default function UploadFeed() {
   const editorRef = useRef();
   const [text, setText] = useState([]);
@@ -50,6 +51,7 @@ export default function UploadFeed() {
           actions={["bold", "italic", "underline"]}
           getEditor={() => editorRef.current}
         />
+        <AddPhotoLibrary />
       </View>
     </View>
   );

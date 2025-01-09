@@ -3,7 +3,7 @@ import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import Comment from "../NewFeed/Comment";
 import FormatDate from "../../utils/FormatDate";
 import CarouselImage from "../Carousel/CarouselImage";
-import Food from "../Suggestion/Food";
+import SwiperHome from "./SwiperHome";
 
 const styles = StyleSheet.create({
   container: {
@@ -84,10 +84,9 @@ export default function Feed() {
           Công Viên Nước Nóng Mikazuki: Thiên Đường Giải Trí Nhật Bản Tại Đà
           Nẵng
         </Text>
-        <CarouselImage />
+        <SwiperHome data={data} />
         <Comment />
       </View>
-      <Food />
     </View>
   );
 }

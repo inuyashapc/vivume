@@ -191,4 +191,7 @@ const styles = StyleSheet.create({
     height: 1, // Chiều cao
     backgroundColor: "#ccc", // Màu của đường kẻ ngang
   },
+  policy: {
+    marginTop: 16,
+  },
 });

@@ -1,6 +1,5 @@
 import React from "react";
 import { Image, StyleSheet, View } from "react-native";
-import { SafeAreaView, SafeAreaProvider } from "react-native-safe-area-context";
 export default function SwiperHome({ data }) {
   return (
     <View style={styles.container}>

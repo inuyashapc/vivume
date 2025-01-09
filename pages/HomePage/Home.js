@@ -1,8 +1,8 @@
 import React from "react";
 import { FlatList, StatusBar, StyleSheet, Text, View } from "react-native";
-import SwiperHome from "../../components/common/SwiperHome";
 import Feed from "../../components/common/Feed";
 import CarouselImage from "../../components/Carousel/CarouselImage";
+import Food from "../../components/Suggestion/Food";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -84,6 +84,7 @@ export default function Home() {
             <Text style={styles.secondTitle}>Điểm đến nổi bật trong nước</Text>
             <StatusBar style="auto" />
             <CarouselImage />
+            <Food />
           </View>
         }
         ListEmptyComponent={<Text>Không có dữ liệu</Text>}

@@ -1,6 +1,6 @@
 import { View, Text, StatusBar, StyleSheet } from "react-native";
 import React from "react";
-import CarouselImage from "../Carousel/CarouselImage";
+import CarouselSuggestion from "../Carousel/CarouselSuggestion";
 
 export default function Food() {
   return (
@@ -26,6 +26,7 @@ export default function Food() {
             borderColor: "#1A73E8",
             color: "#1A73E8",
             borderRadius: 8,
+            width: "22.1%",
           }}
         >
           <Text
@@ -42,7 +43,7 @@ export default function Food() {
       </View>
 
       <StatusBar style="auto" />
-      <CarouselImage />
+      <CarouselSuggestion />
     </View>
   );
 }
