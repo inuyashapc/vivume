@@ -1,4 +1,4 @@
-import { TabView, SceneMap } from "react-native-tab-view";
+import { TabView, SceneMap, TabBar } from "react-native-tab-view";
 import { View, Text, StyleSheet, useWindowDimensions } from "react-native";
 import React from "react";
 import General from "../../components/Setting/General";
@@ -22,6 +22,20 @@ const routes = [
   { key: "password", title: "Mật khẩu" },
   { key: "draft", title: "Bản nhấp" },
 ];
+const renderTabBar = (props) => (
+  <TabBar
+    {...props}
+    indicatorStyle={{
+      backgroundColor: "#2563EB", // Màu gạch chân
+      height: 2, // Độ dày gạch chân
+    }}
+    activeColor="#2563EB" // Màu chữ active
+    inactiveColor="#4B5563" // Màu chữ không active
+    style={{
+      backgroundColor: "#FFF", // Nền trắng cho toàn bộ TabBar
+    }}
+  />
+);
 export default function Setting() {
   const layout = useWindowDimensions();
   const [index, setIndex] = React.useState(0);
@@ -33,7 +47,9 @@ export default function Setting() {
         </View>
         <View style={{ flex: 1 }}>
           <TabView
+            renderTabBar={renderTabBar}
             navigationState={{ index, routes }}
+            style={{ backgroundColor: "#FFF" }}
             renderScene={renderScene}
             onIndexChange={setIndex}
             initialLayout={{ width: layout.width }}
