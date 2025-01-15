@@ -1,15 +1,6 @@
 import * as React from "react";
-import {
-  Dimensions,
-  Image,
-  ImageBackground,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import { Dimensions, View } from "react-native";
 import Carousel from "react-native-reanimated-carousel";
-import Icon from "react-native-vector-icons/FontAwesome5";
-import TruncateText from "../../utils/TruncateText";
 import CardComponent from "../NewFeed/CardComponent";
 const data = [
   {
@@ -61,58 +52,5 @@ function CarouselSuggestion() {
     </View>
   );
 }
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//   },
-//   imageContainer: {
-//     borderRadius: 8, // Để bo góc khớp với ảnh
-//     width: width / 2,
-//     overflow: "hidden", // Đảm bảo nội dung bên trong không tràn ra
-//     borderWidth: 2, // Độ dày đường viền
-//     borderColor: "#D1D5DB", // Màu đường viền (xám nhạt)
-//   },
-//   image: {
-//     width: width / 2,
-//     height: 192,
-//   },
-//   user: {
-//     flexDirection: "row",
-//     justifyContent: "space-around",
-//     padding: 12,
-//     paddingTop: 32,
-//     height: "100%",
-//     alignItems: "flex-end",
-//   },
-//   username: {
-//     color: "#FFF",
-//     fontSize: 14,
-//     lineHeight: 20,
-//   },
-//   text: {
-//     color: "#FFF",
-//     fontSize: 13.6,
-//     lineHeight: 16,
-//   },
-//   avatar: {
-//     width: 20,
-//     height: 20,
-//     borderRadius: 10, // Bo góc tròn hoàn toàn cho ảnh avatar
-//     borderWidth: 1, // Độ dày đường viền
-//     borderColor: "#FFF", // Màu viền trắng cho avatar
-//   },
-//   description: {
-//     width: width / 2,
-//   },
-//   descriptionText: {
-//     fontWeight: "500",
-//     fontSize: 14,
-//     lineHeight: 20,
-//     color: "#4B5563",
-//   },
-//   category: {
-//     color: "#1B75D0",
-//   },
-// });
 
 export default CarouselSuggestion;

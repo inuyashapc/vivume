@@ -11,6 +11,10 @@ import Icon from "react-native-vector-icons/FontAwesome5";
 import TruncateText from "../../utils/TruncateText";
 
 const width = Dimensions.get("window").width;
+const imageUrl =
+  "https://suckhoedoisong.qltns.mediacdn.vn/Images/thanhloan/2020/11/28/Nam-2030-du-lich-ha-noi-phan-dau-tro-thanh-nganh-kinh-te-mui-nhon-cua-thu-do-19.jpg";
+const avatar =
+  "https://genk.mediacdn.vn/139269124445442048/2023/12/6/naruto-6-5448-1701839899156-1701839899299913130408.jpg";
 export default function CardComponent() {
   return (
     <View style={styles.container}>
@@ -19,7 +23,7 @@ export default function CardComponent() {
           style={styles.image}
           resizeMode="cover"
           source={{
-            uri: "https://suckhoedoisong.qltns.mediacdn.vn/Images/thanhloan/2020/11/28/Nam-2030-du-lich-ha-noi-phan-dau-tro-thanh-nganh-kinh-te-mui-nhon-cua-thu-do-19.jpg",
+            uri: imageUrl,
           }}
         >
           <View style={styles.user}>
@@ -27,7 +31,7 @@ export default function CardComponent() {
             <Image
               style={styles.avatar}
               source={{
-                uri: "https://genk.mediacdn.vn/139269124445442048/2023/12/6/naruto-6-5448-1701839899156-1701839899299913130408.jpg",
+                uri: avatar,
               }}
             />
             <Text style={styles.username} numberOfLines={1}>
