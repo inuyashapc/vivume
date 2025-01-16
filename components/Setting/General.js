@@ -14,12 +14,7 @@ const fieldInputText = [
     label: "email",
     placeholder: "Địa chỉ email",
   },
-  {
-    id: 3,
-    title: "Họ tên",
-    label: "fullname",
-    placeholder: "Họ và tên",
-  },
+  { id: 3, title: "Họ tên", label: "fullname", placeholder: "Họ và tên" },
   {
     id: 4,
     title: "Số điện thoại",
@@ -38,13 +33,22 @@ const fieldInputText = [
     label: "instagramLink",
     placeholder: "Link Facebook",
   },
-  {
-    id: 7,
-    title: "Tiểu sử",
-    label: "email",
-    placeholder: "Tiểu sử",
-  },
+  { id: 7, title: "Tiểu sử", label: "email", placeholder: "Tiểu sử" },
 ];
+const ListFooter = () => (
+  <View>
+    <View style={styles.footerText}>
+      <Text>Giới thiệu</Text>
+    </View>
+    <View style={{ marginTop: 20 }}>
+      <Button
+        title="Cập nhật"
+        accessibilityLabel="Learn more about this purple button"
+      />
+    </View>
+  </View>
+);
+
 export default function General() {
   return (
     <View style={{ flex: 1 }}>
@@ -60,22 +64,8 @@ export default function General() {
             />
           )}
           showsVerticalScrollIndicator={false}
-          keyExtractor={(item) => item.id}
-          ListFooterComponent={
-            <View>
-              <View style={{ marginTop: 24 }}>
-                <Text style={{ fontSize: 15, color: "#3B4045" }}>
-                  Giới thiệu
-                </Text>
-              </View>
-              <View style={{ marginTop: 20 }}>
-                <Button
-                  title="Cập nhật"
-                  accessibilityLabel="Learn more about this purple button"
-                />
-              </View>
-            </View>
-          }
+          keyExtractor={(item) => item.id.toString()}
+          ListFooterComponent={<ListFooter />}
         />
       </View>
     </View>
@@ -85,5 +75,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
+  },
+  footerText: {
+    marginTop: 24,
+    fontSize: 15,
+    color: "#3B4045",
   },
 });
