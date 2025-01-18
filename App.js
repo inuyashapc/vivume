@@ -7,6 +7,9 @@ import Notification from "./pages/NotificationPage/Notification";
 import UploadFeed from "./pages/UploadFeedPage/UploadFeed";
 import User from "./pages/UserPage/User";
 import Setting from "./pages/SettingPage/Setting";
+import Login from "./pages/LoginPage/Login";
+import { useEffect, useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 const ICONS = {
   Home: "home",
   UploadFeed: "send",
@@ -27,16 +30,33 @@ const screenOptions = ({ route }) => ({
 });
 
 export default function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  useEffect(() => {
+    const checkLoginStatus = async () => {
+      const loggedIn = await AsyncStorage.getItem("userToken");
+      setIsLoggedIn(loggedIn === "true"); // Kiểm tra trạng thái đăng nhập
+    };
+
+    checkLoginStatus();
+  }, []);
+
+  const handleLogin = () => {
+    setIsLoggedIn(true); // Cập nhật trạng thái đăng nhập
+  };
   const Tab = createMaterialTopTabNavigator();
   return (
     <NavigationContainer>
-      <Tab.Navigator screenOptions={screenOptions}>
-        <Tab.Screen name="Home" component={Home} />
-        <Tab.Screen name="Search" component={Setting} />
-        <Tab.Screen name="UploadFeed" component={UploadFeed} />
-        <Tab.Screen name="Notification" component={Notification} />
-        <Tab.Screen name="User" component={User} />
-      </Tab.Navigator>
+      {isLoggedIn ? ( // Kiểm tra trạng thái đăng nhập
+        <Tab.Navigator screenOptions={screenOptions}>
+          <Tab.Screen name="Home" component={Home} />
+          <Tab.Screen name="Search" component={Searching} />
+          <Tab.Screen name="UploadFeed" component={UploadFeed} />
+          <Tab.Screen name="Notification" component={Notification} />
+          <Tab.Screen name="User" component={User} />
+        </Tab.Navigator>
+      ) : (
+        <Login /> // Hiển thị màn hình đăng nhập
+      )}
     </NavigationContainer>
   );
 }

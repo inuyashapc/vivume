@@ -5,12 +5,60 @@ import {
   TextInput,
   Button,
   TouchableOpacity,
+  Alert,
 } from "react-native";
 import React, { useState } from "react";
 import Icon from "react-native-vector-icons/FontAwesome5";
+import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Login() {
-  const [text, setText] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const saveToken = async (token) => {
+    try {
+      await AsyncStorage.setItem("userToken", token);
+      console.log("Token saved successfully!");
+    } catch (error) {
+      console.error("Error saving token", error);
+    }
+  };
+  const handleLogin = () => {
+    if (!email || !password) {
+      Alert.alert("Lỗi", "Vui lòng nhập đầy đủ thông tin!");
+      return;
+    }
+    const body = { email, password };
+    console.log("🚀 ========= body:", body);
+    // Gọi API để xử lý login
+    fetch("http://192.168.0.5:9999/account", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    })
+      .then((response) => {
+        console.log("🚀 ========= response:", response);
+        // Check if response is ok
+        if (response) {
+          Alert.alert("Thành công", response.toString());
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("🚀 ========= data:", data);
+        if (data) {
+          Alert.alert("Thành công", data.token);
+          saveToken(data.token);
+        }
+      })
+      .catch((error) => {
+        Alert.alert("Lỗi", error.toString());
+        console.error(error);
+      });
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.containerLogin}>
@@ -31,6 +79,8 @@ export default function Login() {
           <TextInput
             style={styles.input}
             placeholder="Email hoặc Tên đăng nhập"
+            value={email}
+            onChangeText={setEmail}
             accessibilityLabel="Input field" // Đọc nội dung cho người dùng
             accessibilityHint="Enter text here" // Gợi ý thêm khi người dùng chọn vào
             accessibilityLabelledBy="username" // Liên kết tới Text qua nativeID
@@ -48,6 +98,8 @@ export default function Login() {
           <TextInput
             style={styles.input}
             placeholder="*****"
+            value={password}
+            onChangeText={setPassword}
             accessibilityLabel="Input field" // Đọc nội dung cho người dùng
             accessibilityHint="Enter text here" // Gợi ý thêm khi người dùng chọn vào
             accessibilityLabelledBy="password" // Liên kết tới Text qua nativeID
@@ -57,7 +109,7 @@ export default function Login() {
         <Button
           style={styles.buttonLogin}
           title="Đăng nhập"
-          onPress={() => console.log("Simple Button pressed")}
+          onPress={handleLogin}
         />
         <View
           style={{
