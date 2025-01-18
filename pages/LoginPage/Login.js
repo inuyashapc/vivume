@@ -9,23 +9,20 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import Icon from "react-native-vector-icons/FontAwesome5";
-import axios from "axios";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useAuth } from "../../app/context/AuthContext";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const saveToken = async (token) => {
-    try {
-      await AsyncStorage.setItem("userToken", token);
-      console.log("Token saved successfully!");
-    } catch (error) {
-      console.error("Error saving token", error);
-    }
-  };
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+
+  const { login } = useAuth();
+
   const handleLogin = () => {
-    if (!email || !password) {
-      Alert.alert("Lỗi", "Vui lòng nhập đầy đủ thông tin!");
+    if (!email && !password) {
+      setEmailError("Require email");
+      setPasswordError("Password require");
       return;
     }
     const body = { email, password };
@@ -41,16 +38,24 @@ export default function Login() {
       .then((response) => {
         console.log("🚀 ========= response:", response);
         // Check if response is ok
-        if (response) {
+        if (!response) {
           Alert.alert("Thành công", response.toString());
         }
         return response.json();
       })
       .then((data) => {
         console.log("🚀 ========= data:", data);
-        if (data) {
-          Alert.alert("Thành công", data.token);
-          saveToken(data.token);
+        if (data.error === "Email not exist") {
+          setEmailError(data.error);
+          console.log("Thành công", data.error);
+        }
+        if (data.error === "Password is not correct") {
+          setPasswordError(data.error);
+          console.log("Thành công", data.error);
+        }
+        if (data.token) {
+          console.log("Thành công", data.token);
+          login(data.token);
         }
       })
       .catch((error) => {
@@ -68,43 +73,49 @@ export default function Login() {
           <Text style={{ color: "#1b75d0" }}>Tạo tài khoản!</Text>
         </Text>
         <View>
-          <Text
-            nativeID="username" // ID cho Text để liên kết với TextInput
-            style={styles.label}
-          >
+          <Text nativeID="username" style={styles.label}>
             Tài khoản
           </Text>
-
-          {/* TextInput */}
           <TextInput
-            style={styles.input}
+            style={[
+              styles.input,
+              emailError ? { borderColor: "red" } : { borderColor: "#ccc" },
+            ]}
             placeholder="Email hoặc Tên đăng nhập"
             value={email}
-            onChangeText={setEmail}
-            accessibilityLabel="Input field" // Đọc nội dung cho người dùng
-            accessibilityHint="Enter text here" // Gợi ý thêm khi người dùng chọn vào
-            accessibilityLabelledBy="username" // Liên kết tới Text qua nativeID
+            onChangeText={(text) => {
+              setEmail(text);
+              setEmailError(""); // Xóa lỗi khi người dùng nhập lại
+            }}
+            accessibilityLabelledBy="username"
           />
+          {emailError ? (
+            <Text style={styles.errorText}>{emailError}</Text>
+          ) : null}
         </View>
         <View>
-          <Text
-            nativeID="password" // ID cho Text để liên kết với TextInput
-            style={styles.label}
-          >
-            Tài khoản
+          <Text nativeID="password" style={styles.label}>
+            Mật khẩu
           </Text>
-
-          {/* TextInput */}
           <TextInput
-            style={styles.input}
+            style={[
+              styles.input,
+              passwordError ? { borderColor: "red" } : { borderColor: "#ccc" },
+            ]}
             placeholder="*****"
             value={password}
-            onChangeText={setPassword}
-            accessibilityLabel="Input field" // Đọc nội dung cho người dùng
-            accessibilityHint="Enter text here" // Gợi ý thêm khi người dùng chọn vào
-            accessibilityLabelledBy="password" // Liên kết tới Text qua nativeID
+            onChangeText={(text) => {
+              setPassword(text);
+              setPasswordError(""); // Xóa lỗi khi người dùng nhập lại
+            }}
+            secureTextEntry
+            accessibilityLabelledBy="password"
           />
+          {passwordError ? (
+            <Text style={styles.errorText}>{passwordError}</Text>
+          ) : null}
         </View>
+
         <Text style={styles.forgotPass}>Tìm lại mật khẩu?</Text>
         <Button
           style={styles.buttonLogin}
@@ -245,5 +256,10 @@ const styles = StyleSheet.create({
   },
   policy: {
     marginTop: 16,
+  },
+  errorText: {
+    color: "red",
+    fontSize: 12,
+    marginTop: 4,
   },
 });

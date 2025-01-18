@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
+import { useAuth } from "../../app/context/AuthContext";
 const action = [
   {
     id: 1,
@@ -30,6 +31,7 @@ const action = [
 ];
 export default function ProfileMenu() {
   const [activeAction, setActiveAction] = useState(1);
+  const { logout } = useAuth();
   return (
     <View style={styles.container}>
       {/* Header */}
@@ -61,7 +63,12 @@ export default function ProfileMenu() {
 
       {/* Logout */}
       <View style={styles.logout}>
-        <MenuItem icon="exit-to-app" text="Thoát" color="black" />
+        <MenuItem
+          icon="exit-to-app"
+          text="Thoát"
+          color="black"
+          onPress={logout}
+        />
       </View>
     </View>
   );
