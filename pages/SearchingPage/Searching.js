@@ -3,7 +3,6 @@ import React from "react";
 import Icon from "react-native-vector-icons/FontAwesome5";
 
 export default function Searching() {
-  const [text, onChangeText] = React.useState("Useless Text");
   return (
     <View style={styles.container}>
       <View style={styles.containerInput}>
@@ -11,8 +10,6 @@ export default function Searching() {
           <TextInput
             style={styles.input}
             autoComplete="street-address"
-            onChangeText={onChangeText}
-            value={text}
             placeholder="Từ khóa tìm kiếm"
           />
           <Icon name="search" size={20} />

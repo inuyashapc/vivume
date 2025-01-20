@@ -37,8 +37,6 @@ function truncateDescription(description = "") {
 }
 
 function CarouselImage() {
-  console.log("🚀 ========= width:", width);
-
   return (
     <View style={{ flex: 1, height: 154 }}>
       <Carousel
@@ -48,9 +46,9 @@ function CarouselImage() {
         autoPlay={true}
         data={data}
         scrollAnimationDuration={1000}
-        onSnapToItem={(item) => console.log("current index:", item)}
+        // onSnapToItem={(item) => console.log("current index:", item)}
         renderItem={({ item, index }) => {
-          console.log("🚀 ========= index:", item);
+          // console.log("🚀 ========= index:", item);
           return (
             <View
               style={{

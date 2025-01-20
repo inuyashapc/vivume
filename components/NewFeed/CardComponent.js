@@ -38,9 +38,8 @@ export default function CardComponent() {
               Vũ Thanh...
             </Text>
             {/* Lượt thích */}
-            <Text style={styles.text}>
-              <Icon name="heart" size={14} color="#FFF" /> 162
-            </Text>
+            <Icon name="heart" size={14} color="#FFF" />
+            <Text style={styles.text}>162</Text>
           </View>
         </ImageBackground>
       </View>
