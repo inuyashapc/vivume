@@ -1,12 +1,4 @@
-import {
-  View,
-  Text,
-  StyleSheet,
-  TextInput,
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-} from "react-native";
+import { View, Text, StyleSheet, TextInput } from "react-native";
 import React, { useRef, useState } from "react";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { RichEditor, RichToolbar } from "react-native-pell-rich-editor";
@@ -36,7 +28,7 @@ export default function UploadFeed() {
         >
           <Icon name="comment" size={16} color="#1B75D0" />
           <Text style={{ fontSize: 14, color: "#1B75D0" }}>
-            Danh mục địa phương (tùy chọn)
+            Danh mục địa phương {`(`}tùy chọn{`)`}
           </Text>
         </View>
         {/* <RichEditor

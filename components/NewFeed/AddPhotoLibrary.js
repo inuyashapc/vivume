@@ -6,7 +6,7 @@ const AddPhotoLibrary = () => {
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.button}>
-        <Icon name="camera" size={50} />;
+        <Icon name="camera" size={50} />
         <Text style={styles.text}>Thêm thư viện ảnh</Text>
       </TouchableOpacity>
     </View>
